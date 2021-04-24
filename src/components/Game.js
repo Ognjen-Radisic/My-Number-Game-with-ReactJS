@@ -10,25 +10,6 @@ import Numbers from "./Numbers";
 import Operations from "./Operations";
 
 const Game = () => {
-	const [fastRenderNumber, setFastRenderNumber] = useState([
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
-		6,
-		7,
-		8,
-		9,
-	]);
-
-	function getRandomInt(max) {
-		return Math.floor(Math.random() * max);
-	}
-
-	const getNextNumber = () => {};
-
 	return (
 		<Container
 			maxWidth="sm"
@@ -45,14 +26,12 @@ const Game = () => {
 			</Typography>
 
 			{/* Start the game, and stop each number in place */}
-			<MyButton color="blue" onCLick={getNextNumber}>
-				START
-			</MyButton>
+			<MyButton color="blue">START</MyButton>
 
 			{/* timer that starts after the last digit loaded, 50 seconds timer */}
-			<LinearWithValueLabel />
+			{/* <LinearWithValueLabel /> */}
 
-			{/* 3 individual digits at the top that make target number, 4 single digits, one 'medium' number, one 'large' number */}
+			{/* 3 individual digits at the top that make target number, below, 4 single digits, one 'medium' number, one 'large' number */}
 			<Numbers />
 
 			{/* divide lower field in two parts, on the left user input, on the right mathematical operations */}
