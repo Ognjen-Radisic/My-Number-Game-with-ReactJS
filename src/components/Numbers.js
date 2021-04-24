@@ -59,17 +59,17 @@ const Numbers = () => {
 			</MyButton>
 			<Grid container spacing={1} justify="center" style={{ margin: "10px 0" }}>
 				<Grid item>
-					<Button disabled style={paperStyle} data-id="1">
+					<Button style={paperStyle} data-id="1">
 						{curID === 1 ? tempValue : values.value1}
 					</Button>
 				</Grid>
 				<Grid item>
-					<Button disabled style={paperStyle} data-id="2">
+					<Button style={paperStyle} data-id="2">
 						{curID === 2 ? tempValue : values.value2}
 					</Button>
 				</Grid>
 				<Grid item>
-					<Button disabled style={paperStyle} data-id="3">
+					<Button style={paperStyle} data-id="3">
 						{curID === 3 ? tempValue : values.value3}
 					</Button>
 				</Grid>
@@ -81,18 +81,17 @@ const Numbers = () => {
 					justify="center"
 					style={{ margin: "10px 0" }}>
 					<Grid item>
-						<Button disabled style={paperStyle} id="4">
+						<Button style={paperStyle} id="4">
 							{curID === 4 ? tempValue : values.value4}
 						</Button>
 					</Grid>
 					<Grid item>
-						<Button disabled style={paperStyle} id="5">
+						<Button style={paperStyle} id="5">
 							{curID === 5 ? tempValue : values.value5}
 						</Button>
 					</Grid>
 					<Grid item>
 						<Button
-							disabled
 							onClick={() => console.log("hello")}
 							style={paperStyle}
 							id="6">
@@ -100,7 +99,7 @@ const Numbers = () => {
 						</Button>
 					</Grid>
 					<Grid item>
-						<Button disabled style={paperStyle} id="7">
+						<Button style={paperStyle} id="7">
 							{curID === 7 ? tempValue : values.value7}
 						</Button>
 					</Grid>
@@ -111,7 +110,7 @@ const Numbers = () => {
 					justify="center"
 					style={{ margin: "10px 0" }}>
 					<Grid item>
-						<Button disabled style={{ ...paperStyle, width: 80 }} id="8">
+						<Button style={{ ...paperStyle, width: 80 }} id="8">
 							{curID === 8 ? tempValue : values.value8}
 						</Button>
 					</Grid>
@@ -119,10 +118,10 @@ const Numbers = () => {
 				<Grid
 					container
 					spacing={1}
-					justify="center"
+					justify="flex-start"
 					style={{ margin: "10px 0" }}>
 					<Grid item>
-						<Button disabled style={{ ...paperStyle, width: 80 }} id="9">
+						<Button style={{ ...paperStyle, width: 80 }} id="9">
 							{curID === 9 ? tempValue : values.value9}
 						</Button>
 					</Grid>
