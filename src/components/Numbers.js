@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import MyButton from "./StyledButton";
@@ -9,7 +9,6 @@ const Numbers = () => {
 
 	const [resultField, setResultField] = useState("hello");
 	const [curID, setCurID] = useState(0);
-	const hello = 1;
 	const [values, setValues] = useState({
 		value1: null,
 		disabled1: false,
@@ -31,6 +30,18 @@ const Numbers = () => {
 		disabled9: false,
 	});
 
+	const [btnDisable, setBtnDisable] = useState({
+		disabled1: false,
+		disabled2: false,
+		disabled3: false,
+		disabled4: false,
+		disabled5: false,
+		disabled6: false,
+		disabled7: false,
+		disabled8: false,
+		disabled9: false,
+	});
+
 	function getRandomInt(max) {
 		return Math.floor(Math.random() * max);
 	}
@@ -43,10 +54,12 @@ const Numbers = () => {
 		return arr[Math.floor(Math.random() * arr.length)];
 	}
 
+	// lock in numbers by taversing ids and match them to the element
+	// when they are matched assing random number from the given range
 	const getNumbers = () => {
 		setCurID(curID + 1);
 		if (curID < 8) {
-			values[`value${curID}`] = getRandomInt(10);
+			setValues({ ...values, [`value${curID}`]: getRandomInt(10) });
 		} else if (curID === 8) {
 			values[`value${curID}`] = getRandomIntMid();
 		} else if (curID === 9) {
@@ -55,52 +68,76 @@ const Numbers = () => {
 		console.log(curID);
 		console.log(values);
 	};
+	const getNum = () => {
+		// if(values[`value${curID-1}`] === null){
+		// 	values[`value${curID-1}`] = getRandomInt(10)
+		// }
+		setCurID(curID + 1);
+		setTimeout(() => {
+			values[`value${curID}`] = getRandomInt(10);
+			getNum();
+		}, 3000);
+	};
 
+	useEffect(() => {
+		const interval = setInterval(() => {
+			values[`value${curID}`] = getRandomInt(10);
+		}, 100);
+		return () => clearInterval(interval);
+	}, [curID, values[`value${curID}`]]);
+
+	//extract value from clicked button by grabing the id and comparing it to the state
 	const displayNum = (e) => {
 		console.log(e.target);
 		const id = e.target.id;
 		console.log(id);
-		values[`disabled${id}`] = true;
+		setBtnDisable({ ...btnDisable, [`disabled${id}`]: true });
 	};
 
 	return (
 		<>
+			{/* Button that initialize numbers from start to finish, and then disabled until game ends */}
 			<MyButton
 				disabled={curID > 9 ? true : false}
 				color="red"
-				onClick={getNumbers}>
+				onClick={getNum}>
 				stop
 			</MyButton>
+
+			{/* TOP 3 numbers that make a target 3 digit number */}
 			<Grid container spacing={1} justify="center" style={{ margin: "10px 0" }}>
 				<Grid item>
 					<button
-						disabled={values.disabled1}
+						disabled={btnDisable.disabled1}
 						style={paperStyle}
 						id="1"
 						onClick={displayNum}>
-						{curID === 1 ? tempValue : values.value1}
+						{values.value1}
 					</button>
 				</Grid>
 				<Grid item>
 					<button
-						disabled={values.disabled2}
+						disabled={btnDisable.disabled2}
 						style={paperStyle}
 						id="2"
 						onClick={displayNum}>
-						{curID === 2 ? tempValue : values.value2}
+						{values.value2}
 					</button>
 				</Grid>
 				<Grid item>
 					<button
-						disabled={values.disabled3}
+						disabled={btnDisable.disabled3}
 						style={paperStyle}
 						id="3"
 						onClick={displayNum}>
-						{curID === 3 ? tempValue : values.value3}
+						{values.value3}
 					</button>
 				</Grid>
 			</Grid>
+
+			{/* numbers that we can work with */}
 			<div className="numbers-container">
+				{/* 4 single digit numbers on the left */}
 				<Grid
 					container
 					spacing={1}
@@ -117,11 +154,7 @@ const Numbers = () => {
 						</Button>
 					</Grid>
 					<Grid item>
-						<Button
-							onClick={() => console.log("hello")}
-							style={paperStyle}
-							id="6"
-							onClick={displayNum}>
+						<Button style={paperStyle} id="6" onClick={displayNum}>
 							{curID === 6 ? tempValue : values.value6}
 						</Button>
 					</Grid>
@@ -131,6 +164,8 @@ const Numbers = () => {
 						</Button>
 					</Grid>
 				</Grid>
+
+				{/* central number that can be 10, 15 or 20 */}
 				<Grid
 					container
 					spacing={1}
@@ -145,6 +180,8 @@ const Numbers = () => {
 						</Button>
 					</Grid>
 				</Grid>
+
+				{/* right most number that can be 25, 50, 75, 100 */}
 				<Grid
 					container
 					spacing={1}
