@@ -12,6 +12,11 @@ const Numbers = () => {
 		setBtnDisable,
 		curID,
 		setCurID,
+		resultField,
+		setResultField,
+		stringID,
+		setStringID,
+		operationsArray,
 	} = GlobalContext();
 
 	function getRandomInt(max) {
@@ -44,11 +49,21 @@ const Numbers = () => {
 		const id = e.target.id;
 		console.log(id);
 		console.log(values[`value${id}`]);
-		addToResultField(id);
-		setBtnDisable({ ...btnDisable, [`disabled${id}`]: true });
+		addNumberToResultField(id);
 	};
 
-	const addToResultField = (id) => {};
+	const addNumberToResultField = (id) => {
+		var lastChar = resultField.charAt(resultField.length - 1);
+		if (
+			operationsArray.includes(lastChar) ||
+			resultField === "" ||
+			lastChar === "("
+		) {
+			setBtnDisable({ ...btnDisable, [`disabled${id}`]: true });
+			setResultField(`${resultField}${values[`value${id}`]}`);
+		}
+		console.log(resultField);
+	};
 
 	return (
 		<>
@@ -104,7 +119,7 @@ const Numbers = () => {
 					style={{ margin: "10px 0" }}>
 					<Grid item>
 						<button
-							disabled={btnDisable.disabled3}
+							disabled={btnDisable.disabled4}
 							style={paperStyle}
 							id="4"
 							onClick={displayNum}>
@@ -113,7 +128,7 @@ const Numbers = () => {
 					</Grid>
 					<Grid item>
 						<button
-							disabled={btnDisable.disabled3}
+							disabled={btnDisable.disabled5}
 							style={paperStyle}
 							id="5"
 							onClick={displayNum}>
@@ -122,7 +137,7 @@ const Numbers = () => {
 					</Grid>
 					<Grid item>
 						<button
-							disabled={btnDisable.disabled3}
+							disabled={btnDisable.disabled6}
 							style={paperStyle}
 							id="6"
 							onClick={displayNum}>
@@ -131,7 +146,7 @@ const Numbers = () => {
 					</Grid>
 					<Grid item>
 						<button
-							disabled={btnDisable.disabled3}
+							disabled={btnDisable.disabled7}
 							style={paperStyle}
 							id="7"
 							onClick={displayNum}>
@@ -148,7 +163,7 @@ const Numbers = () => {
 					style={{ margin: "10px 0" }}>
 					<Grid item>
 						<button
-							disabled={btnDisable.disabled3}
+							disabled={btnDisable.disabled8}
 							style={{ ...paperStyle, width: 60 }}
 							id="8"
 							onClick={displayNum}>
@@ -165,7 +180,7 @@ const Numbers = () => {
 					style={{ margin: "10px 0" }}>
 					<Grid item>
 						<button
-							disabled={btnDisable.disabled3}
+							disabled={btnDisable.disabled9}
 							style={{ ...paperStyle, width: 80 }}
 							id="9"
 							onClick={displayNum}>

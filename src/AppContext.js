@@ -5,7 +5,11 @@ import React, { useContext, useState } from "react";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-	const [resultField, setResultField] = useState("hello");
+	const [resultField, setResultField] = useState("");
+	const [stringID, setStringID] = useState("");
+	const [operationsArray, setOperations] = useState(["+", "-", "*", "/"]);
+	const [brackets, setBrackets] = useState(["(", ")"]);
+
 	const [curID, setCurID] = useState(1);
 	const [values, setValues] = useState({
 		value1: null,
@@ -41,6 +45,10 @@ const AppProvider = ({ children }) => {
 				setCurID,
 				resultField,
 				setResultField,
+				stringID,
+				setStringID,
+				operationsArray,
+				brackets,
 			}}>
 			{children}
 		</AppContext.Provider>
