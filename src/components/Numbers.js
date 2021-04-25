@@ -42,6 +42,19 @@ const Numbers = () => {
 			setValues({ ...values, [`value${curID}`]: getRandomIntLarge() });
 		}
 		setCurID(curID + 1);
+		if (curID === 9) {
+			setBtnDisable({
+				disabled1: false,
+				disabled2: false,
+				disabled3: false,
+				disabled4: false,
+				disabled5: false,
+				disabled6: false,
+				disabled7: false,
+				disabled8: false,
+				disabled9: false,
+			});
+		}
 	};
 
 	const displayNum = (e) => {

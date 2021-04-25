@@ -23,15 +23,15 @@ const AppProvider = ({ children }) => {
 		value9: null,
 	});
 	const [btnDisable, setBtnDisable] = useState({
-		disabled1: false,
-		disabled2: false,
-		disabled3: false,
-		disabled4: false,
-		disabled5: false,
-		disabled6: false,
-		disabled7: false,
-		disabled8: false,
-		disabled9: false,
+		disabled1: true,
+		disabled2: true,
+		disabled3: true,
+		disabled4: true,
+		disabled5: true,
+		disabled6: true,
+		disabled7: true,
+		disabled8: true,
+		disabled9: true,
 	});
 
 	return (
