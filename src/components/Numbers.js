@@ -5,29 +5,20 @@ import MyButton from "./StyledButton";
 import { Button } from "@material-ui/core";
 
 const Numbers = () => {
-	const [tempValue, setTempValue] = useState(3);
+	const [tempValue, setTempValue] = useState("?");
 
 	const [resultField, setResultField] = useState("hello");
-	const [curID, setCurID] = useState(0);
+	const [curID, setCurID] = useState(1);
 	const [values, setValues] = useState({
 		value1: null,
-		disabled1: false,
 		value2: null,
-		disabled2: false,
 		value3: null,
-		disabled3: false,
 		value4: null,
-		disabled4: false,
 		value5: null,
-		disabled5: false,
 		value6: null,
-		disabled6: false,
 		value7: null,
-		disabled7: false,
 		value8: null,
-		disabled8: false,
 		value9: null,
-		disabled9: false,
 	});
 
 	const [btnDisable, setBtnDisable] = useState({
@@ -57,52 +48,66 @@ const Numbers = () => {
 	// lock in numbers by taversing ids and match them to the element
 	// when they are matched assing random number from the given range
 	const getNumbers = () => {
-		setCurID(curID + 1);
+		// const interval = setInterval(() => {
+		// 	getRandomInt(10);
+		// }, 100);
+		// setTempValue(
+		// 	setInterval(() => {
+		// 		getRandomInt(10);
+		// 	}, 100)
+		// );
+		// console.log(interval);
 		if (curID < 8) {
 			setValues({ ...values, [`value${curID}`]: getRandomInt(10) });
 		} else if (curID === 8) {
-			values[`value${curID}`] = getRandomIntMid();
+			setValues({ ...values, [`value${curID}`]: getRandomIntMid() });
 		} else if (curID === 9) {
-			values[`value${curID}`] = getRandomIntLarge();
+			setValues({ ...values, [`value${curID}`]: getRandomIntLarge() });
 		}
-		console.log(curID);
-		console.log(values);
-	};
-	const getNum = () => {
-		// if(values[`value${curID-1}`] === null){
-		// 	values[`value${curID-1}`] = getRandomInt(10)
-		// }
 		setCurID(curID + 1);
-		setTimeout(() => {
-			values[`value${curID}`] = getRandomInt(10);
-			getNum();
-		}, 3000);
 	};
+	// const getNum = () => {
+	// 	// if(values[`value${curID-1}`] === null){
+	// 	// 	values[`value${curID-1}`] = getRandomInt(10)
+	// 	// }
+	// 	setCurID(curID + 1);
+	// 	setTimeout(() => {
+	// 		values[`value${curID}`] = getRandomInt(10);
+	// 		getNum();
+	// 	}, 3000);
+	// };
 
-	useEffect(() => {
-		const interval = setInterval(() => {
-			values[`value${curID}`] = getRandomInt(10);
-		}, 100);
-		return () => clearInterval(interval);
-	}, [curID, values[`value${curID}`]]);
+	// useEffect(() => {
+	// 	const interval = setInterval(() => {
+	// 		values[`value${curID}`] = getRandomInt(10);
+	// 	}, 100);
+	// 	return () => clearInterval(interval);
+	// }, [curID, values[`value${curID}`]]);
 
 	//extract value from clicked button by grabing the id and comparing it to the state
 	const displayNum = (e) => {
 		console.log(e.target);
 		const id = e.target.id;
 		console.log(id);
+		console.log(values[`value${id}`]);
+		addToResultField(id);
 		setBtnDisable({ ...btnDisable, [`disabled${id}`]: true });
 	};
+
+	const addToResultField = (id) => {};
 
 	return (
 		<>
 			{/* Button that initialize numbers from start to finish, and then disabled until game ends */}
-			<MyButton
-				disabled={curID > 9 ? true : false}
-				color="red"
-				onClick={getNum}>
-				stop
-			</MyButton>
+			{curID < 10 ? (
+				<MyButton color="red" onClick={getNumbers}>
+					stop
+				</MyButton>
+			) : (
+				<MyButton disabled={true} color="blue" onClick={getNumbers}>
+					good luck
+				</MyButton>
+			)}
 
 			{/* TOP 3 numbers that make a target 3 digit number */}
 			<Grid container spacing={1} justify="center" style={{ margin: "10px 0" }}>
@@ -112,7 +117,7 @@ const Numbers = () => {
 						style={paperStyle}
 						id="1"
 						onClick={displayNum}>
-						{values.value1}
+						{curID === 1 ? tempValue : values.value1}
 					</button>
 				</Grid>
 				<Grid item>
@@ -121,7 +126,7 @@ const Numbers = () => {
 						style={paperStyle}
 						id="2"
 						onClick={displayNum}>
-						{values.value2}
+						{curID === 2 ? tempValue : values.value2}
 					</button>
 				</Grid>
 				<Grid item>
@@ -130,7 +135,7 @@ const Numbers = () => {
 						style={paperStyle}
 						id="3"
 						onClick={displayNum}>
-						{values.value3}
+						{curID === 3 ? tempValue : values.value3}
 					</button>
 				</Grid>
 			</Grid>
@@ -144,24 +149,40 @@ const Numbers = () => {
 					justify="center"
 					style={{ margin: "10px 0" }}>
 					<Grid item>
-						<Button style={paperStyle} id="4" onClick={displayNum}>
+						<button
+							disabled={btnDisable.disabled3}
+							style={paperStyle}
+							id="4"
+							onClick={displayNum}>
 							{curID === 4 ? tempValue : values.value4}
-						</Button>
+						</button>
 					</Grid>
 					<Grid item>
-						<Button style={paperStyle} id="5" onClick={displayNum}>
+						<button
+							disabled={btnDisable.disabled3}
+							style={paperStyle}
+							id="5"
+							onClick={displayNum}>
 							{curID === 5 ? tempValue : values.value5}
-						</Button>
+						</button>
 					</Grid>
 					<Grid item>
-						<Button style={paperStyle} id="6" onClick={displayNum}>
+						<button
+							disabled={btnDisable.disabled3}
+							style={paperStyle}
+							id="6"
+							onClick={displayNum}>
 							{curID === 6 ? tempValue : values.value6}
-						</Button>
+						</button>
 					</Grid>
 					<Grid item>
-						<Button style={paperStyle} id="7" onClick={displayNum}>
+						<button
+							disabled={btnDisable.disabled3}
+							style={paperStyle}
+							id="7"
+							onClick={displayNum}>
 							{curID === 7 ? tempValue : values.value7}
-						</Button>
+						</button>
 					</Grid>
 				</Grid>
 
@@ -172,12 +193,13 @@ const Numbers = () => {
 					justify="center"
 					style={{ margin: "10px 0" }}>
 					<Grid item>
-						<Button
+						<button
+							disabled={btnDisable.disabled3}
 							style={{ ...paperStyle, width: 80 }}
 							id="8"
 							onClick={displayNum}>
 							{curID === 8 ? tempValue : values.value8}
-						</Button>
+						</button>
 					</Grid>
 				</Grid>
 
@@ -188,12 +210,13 @@ const Numbers = () => {
 					justify="flex-start"
 					style={{ margin: "10px 0" }}>
 					<Grid item>
-						<Button
+						<button
+							disabled={btnDisable.disabled3}
 							style={{ ...paperStyle, width: 80 }}
 							id="9"
 							onClick={displayNum}>
 							{curID === 9 ? tempValue : values.value9}
-						</Button>
+						</button>
 					</Grid>
 				</Grid>
 			</div>
@@ -210,6 +233,7 @@ const paperStyle = {
 	justifyContent: "center",
 	fontSize: "150%",
 	fontWeight: 600,
+	outline: "none",
 };
 
 export default Numbers;
