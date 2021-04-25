@@ -7,7 +7,7 @@ const Operations = () => {
 		<div className="grid-operations">
 			<Grid container direction="column" spacing={1}>
 				<Grid item>
-					<Button variant="contained" color="primary">
+					<Button variant="contained" color="primary" fontSize="30">
 						+
 					</Button>
 				</Grid>

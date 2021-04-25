@@ -8,6 +8,7 @@ import { Typography } from "@material-ui/core";
 import "./game.css";
 import Numbers from "./Numbers";
 import Operations from "./Operations";
+import Input from "./Input";
 
 const Game = () => {
 	return (
@@ -39,9 +40,11 @@ const Game = () => {
 				container
 				spacing={1}
 				justify="space-around"
-				style={{ margin: "10px 0" }}>
+				style={{ margin: "10px 0", height: "40%" }}>
 				{/* Left part with user input */}
-				<Grid item>input</Grid>
+				<Grid item>
+					<Input />
+				</Grid>
 
 				{/* Right part with mathematical operations */}
 				<Grid item>

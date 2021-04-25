@@ -1,37 +1,18 @@
 import React, { useState, useEffect } from "react";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import MyButton from "./StyledButton";
-import { Button } from "@material-ui/core";
+import { GlobalContext } from "../AppContext";
 
 const Numbers = () => {
 	const [tempValue, setTempValue] = useState("?");
-
-	const [resultField, setResultField] = useState("hello");
-	const [curID, setCurID] = useState(1);
-	const [values, setValues] = useState({
-		value1: null,
-		value2: null,
-		value3: null,
-		value4: null,
-		value5: null,
-		value6: null,
-		value7: null,
-		value8: null,
-		value9: null,
-	});
-
-	const [btnDisable, setBtnDisable] = useState({
-		disabled1: false,
-		disabled2: false,
-		disabled3: false,
-		disabled4: false,
-		disabled5: false,
-		disabled6: false,
-		disabled7: false,
-		disabled8: false,
-		disabled9: false,
-	});
+	const {
+		values,
+		setValues,
+		btnDisable,
+		setBtnDisable,
+		curID,
+		setCurID,
+	} = GlobalContext();
 
 	function getRandomInt(max) {
 		return Math.floor(Math.random() * max);
@@ -48,15 +29,6 @@ const Numbers = () => {
 	// lock in numbers by taversing ids and match them to the element
 	// when they are matched assing random number from the given range
 	const getNumbers = () => {
-		// const interval = setInterval(() => {
-		// 	getRandomInt(10);
-		// }, 100);
-		// setTempValue(
-		// 	setInterval(() => {
-		// 		getRandomInt(10);
-		// 	}, 100)
-		// );
-		// console.log(interval);
 		if (curID < 8) {
 			setValues({ ...values, [`value${curID}`]: getRandomInt(10) });
 		} else if (curID === 8) {
@@ -66,25 +38,7 @@ const Numbers = () => {
 		}
 		setCurID(curID + 1);
 	};
-	// const getNum = () => {
-	// 	// if(values[`value${curID-1}`] === null){
-	// 	// 	values[`value${curID-1}`] = getRandomInt(10)
-	// 	// }
-	// 	setCurID(curID + 1);
-	// 	setTimeout(() => {
-	// 		values[`value${curID}`] = getRandomInt(10);
-	// 		getNum();
-	// 	}, 3000);
-	// };
 
-	// useEffect(() => {
-	// 	const interval = setInterval(() => {
-	// 		values[`value${curID}`] = getRandomInt(10);
-	// 	}, 100);
-	// 	return () => clearInterval(interval);
-	// }, [curID, values[`value${curID}`]]);
-
-	//extract value from clicked button by grabing the id and comparing it to the state
 	const displayNum = (e) => {
 		console.log(e.target);
 		const id = e.target.id;
@@ -195,7 +149,7 @@ const Numbers = () => {
 					<Grid item>
 						<button
 							disabled={btnDisable.disabled3}
-							style={{ ...paperStyle, width: 80 }}
+							style={{ ...paperStyle, width: 60 }}
 							id="8"
 							onClick={displayNum}>
 							{curID === 8 ? tempValue : values.value8}

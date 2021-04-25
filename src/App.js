@@ -1,13 +1,15 @@
 import "./App.css";
 import Game from "./components/Game";
-
 import "fontsource-roboto";
+import { AppProvider } from "./AppContext";
 
 function App() {
 	return (
-		<div className="App">
-			<Game />
-		</div>
+		<AppProvider>
+			<div className="App">
+				<Game />
+			</div>
+		</AppProvider>
 	);
 }
 
