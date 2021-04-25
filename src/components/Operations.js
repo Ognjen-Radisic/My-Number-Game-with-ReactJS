@@ -10,7 +10,10 @@ const Operations = () => {
 		stringID,
 		setStringID,
 		operationsArray,
-		bracekts,
+		frontBrackets,
+		setFrontBrackets,
+		backBrackets,
+		setBackBrackets,
 	} = GlobalContext();
 
 	const changeResultField = (e) => {
@@ -29,21 +32,25 @@ const Operations = () => {
 	const addFrontBracketToResult = (lastCharacter) => {
 		//they can go at the beggining and after another "(" front bracket
 		if (lastCharacter === "" || lastCharacter === "(") {
+			setFrontBrackets(frontBrackets + 1);
 			setResultField(`${resultField}(`);
 		}
 		// they can go after matchematical operation
 		else if (operationsArray.includes(lastCharacter)) {
+			setFrontBrackets(frontBrackets + 1);
 			setResultField(`${resultField}(`);
 		}
 	};
 
 	const addBackBracketToResult = (lastCharacter) => {
 		//they can't go at the beggining but can go after another ")" back bracket
-		if (lastCharacter === ")") {
+		if (lastCharacter === ")" && backBrackets < frontBrackets) {
+			setBackBrackets(backBrackets + 1);
 			setResultField(`${resultField})`);
 		}
 		// they can go after number
-		else if (!isNaN(parseInt(lastCharacter))) {
+		else if (!isNaN(parseInt(lastCharacter)) && backBrackets < frontBrackets) {
+			setBackBrackets(backBrackets + 1);
 			setResultField(`${resultField})`);
 		}
 	};

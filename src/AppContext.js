@@ -10,6 +10,10 @@ const AppProvider = ({ children }) => {
 	const [operationsArray, setOperations] = useState(["+", "-", "*", "/"]);
 	const [brackets, setBrackets] = useState(["(", ")"]);
 
+	//brackets counters, number of back brackets can never exceed number of front brackets
+	const [frontBrackets, setFrontBrackets] = useState(0);
+	const [backBrackets, setBackBrackets] = useState(0);
+
 	const [curID, setCurID] = useState(1);
 	const [values, setValues] = useState({
 		value1: null,
@@ -49,6 +53,10 @@ const AppProvider = ({ children }) => {
 				setStringID,
 				operationsArray,
 				brackets,
+				frontBrackets,
+				setFrontBrackets,
+				backBrackets,
+				setBackBrackets,
 			}}>
 			{children}
 		</AppContext.Provider>

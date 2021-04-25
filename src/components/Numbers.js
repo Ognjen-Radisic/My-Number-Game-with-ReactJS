@@ -57,6 +57,7 @@ const Numbers = () => {
 		}
 	};
 
+	// press button stop to generate new numbers at the start of the game
 	const displayNum = (e) => {
 		console.log(e.target);
 		const id = e.target.id;
@@ -65,6 +66,7 @@ const Numbers = () => {
 		addNumberToResultField(id);
 	};
 
+	//display numbers if conditions are met in reselt field
 	const addNumberToResultField = (id) => {
 		var lastChar = resultField.charAt(resultField.length - 1);
 		if (
