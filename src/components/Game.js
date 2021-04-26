@@ -20,9 +20,15 @@ const Game = () => {
 				marginTop: "100px",
 				borderRadius: "10px",
 				paddingTop: "5px",
+				boxShadow: "6px 5px #292929",
 			}}>
 			{/* TITLE MyNumber */}
-			<Typography variant="h4" style={{ margin: "10px 0" }}>
+			<Typography
+				variant="h4"
+				style={{
+					margin: "10px 0",
+					fontFamily: "Kanit , sans-serif",
+				}}>
 				Moj Broj
 			</Typography>
 

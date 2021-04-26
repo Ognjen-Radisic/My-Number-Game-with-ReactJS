@@ -67,7 +67,7 @@ const Operations = () => {
 	};
 	return (
 		<div className="grid-operations">
-			<Grid container direction="column" spacing={1}>
+			<Grid container direction="column" spacing={1} justify="center">
 				<Grid item>
 					<button onClick={changeResultField} value={"+"}>
 						+
@@ -85,7 +85,7 @@ const Operations = () => {
 				</Grid>
 			</Grid>
 
-			<Grid container direction="column" spacing={1}>
+			<Grid container direction="column" spacing={1} justify="center">
 				<Grid item>
 					<button onClick={changeResultField} value={"-"}>
 						-
