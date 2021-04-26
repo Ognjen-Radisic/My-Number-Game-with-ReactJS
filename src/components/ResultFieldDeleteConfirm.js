@@ -10,11 +10,12 @@ const Input = () => {
 		stringID,
 		setStringID,
 		values,
-		setValues,
 		btnDisable,
 		setBtnDisable,
+		targetNum,
 	} = GlobalContext();
 
+	///////////////////////////////////////DELETING FUNCTIONALITY//////////////////////////////////////////
 	const deleteCharacter = () => {
 		const lastChar = resultField.charAt(resultField.length - 1);
 		if (resultField === "") {
@@ -60,6 +61,17 @@ const Input = () => {
 		});
 		return arr.join("");
 	};
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	////////////////////////////CONFIRM RESULT FUNCTIONALITY////////////////////////////////////////////////
+	const checkResult = () => {
+		if (targetNum === eval(resultField)) {
+			alert("CORRECT");
+		} else {
+			alert("Better luck next time!");
+		}
+	};
+	///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	return (
 		<>
@@ -72,7 +84,7 @@ const Input = () => {
 						onClick={deleteCharacter}>
 						DELETE
 					</Button>
-					<Button color="primary" variant="contained">
+					<Button color="primary" variant="contained" onClick={checkResult}>
 						CONFIRM
 					</Button>
 				</div>

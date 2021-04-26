@@ -15,6 +15,8 @@ const AppProvider = ({ children }) => {
 	const [frontBrackets, setFrontBrackets] = useState(0);
 	const [backBrackets, setBackBrackets] = useState(0);
 
+	const [targetNum, setTargetNum] = useState(-1);
+
 	const [curID, setCurID] = useState(1);
 	const [values, setValues] = useState({
 		value1: null,
@@ -58,6 +60,8 @@ const AppProvider = ({ children }) => {
 				setFrontBrackets,
 				backBrackets,
 				setBackBrackets,
+				targetNum,
+				setTargetNum,
 			}}>
 			{children}
 		</AppContext.Provider>

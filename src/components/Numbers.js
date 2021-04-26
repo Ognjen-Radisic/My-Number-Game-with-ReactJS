@@ -17,6 +17,7 @@ const Numbers = () => {
 		stringID,
 		setStringID,
 		operationsArray,
+		setTargetNum,
 	} = GlobalContext();
 
 	function getRandomInt(max) {
@@ -44,6 +45,9 @@ const Numbers = () => {
 		}
 		setCurID(curID + 1);
 		if (curID === 9) {
+			setTargetNum(
+				parseInt(`${values.value1}${values.value2}${values.value3}`)
+			);
 			setBtnDisable({
 				disabled1: false,
 				disabled2: false,
