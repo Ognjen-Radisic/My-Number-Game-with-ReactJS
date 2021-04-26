@@ -8,3 +8,24 @@
 	grid-template-columns: 1fr 1fr;
 	column-gap: 0.5rem;
 }
+
+.result-section {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 180px;
+	height: 150px;
+	background-color: transparent;
+	align-items: center;
+}
+
+.result-field {
+	display: flex;
+	padding-left: 20px;
+	align-items: center;
+	width: 180px;
+	height: 50px;
+	background-color: rgb(255, 255, 255);
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
