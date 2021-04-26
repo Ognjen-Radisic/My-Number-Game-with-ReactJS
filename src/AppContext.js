@@ -6,6 +6,7 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
 	const [resultField, setResultField] = useState("");
+	//string with numbers btn id, to enable single deletion if we have 2 or 3 digit numbers
 	const [stringID, setStringID] = useState("");
 	const [operationsArray, setOperations] = useState(["+", "-", "*", "/"]);
 	const [brackets, setBrackets] = useState(["(", ")"]);

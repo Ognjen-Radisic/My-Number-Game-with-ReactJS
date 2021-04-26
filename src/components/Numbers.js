@@ -20,7 +20,8 @@ const Numbers = () => {
 	} = GlobalContext();
 
 	function getRandomInt(max) {
-		return Math.floor(Math.random() * max);
+		//added plus 1 at the end to eliminate zero as possibility
+		return Math.floor(Math.random() * max) + 1;
 	}
 	function getRandomIntMid() {
 		const arr = [10, 15, 20];
@@ -35,7 +36,7 @@ const Numbers = () => {
 	// when they are matched assing random number from the given range
 	const getNumbers = () => {
 		if (curID < 8) {
-			setValues({ ...values, [`value${curID}`]: getRandomInt(10) });
+			setValues({ ...values, [`value${curID}`]: getRandomInt(9) });
 		} else if (curID === 8) {
 			setValues({ ...values, [`value${curID}`]: getRandomIntMid() });
 		} else if (curID === 9) {
@@ -59,10 +60,7 @@ const Numbers = () => {
 
 	// press button stop to generate new numbers at the start of the game
 	const displayNum = (e) => {
-		console.log(e.target);
 		const id = e.target.id;
-		console.log(id);
-		console.log(values[`value${id}`]);
 		addNumberToResultField(id);
 	};
 
@@ -75,9 +73,13 @@ const Numbers = () => {
 			lastChar === "("
 		) {
 			setBtnDisable({ ...btnDisable, [`disabled${id}`]: true });
-			setResultField(`${resultField}${values[`value${id}`]}`);
+			setStringID(
+				`${stringID}${id}`,
+				setResultField(`${resultField}${values[`value${id}`]}`)
+			);
 		}
 		console.log(resultField);
+		console.log(stringID);
 	};
 
 	return (
@@ -96,29 +98,17 @@ const Numbers = () => {
 			{/* TOP 3 numbers that make a target 3 digit number */}
 			<Grid container spacing={1} justify="center" style={{ margin: "10px 0" }}>
 				<Grid item>
-					<button
-						disabled={btnDisable.disabled1}
-						style={paperStyle}
-						id="1"
-						onClick={displayNum}>
+					<button style={paperStyle} id="1">
 						{curID === 1 ? tempValue : values.value1}
 					</button>
 				</Grid>
 				<Grid item>
-					<button
-						disabled={btnDisable.disabled2}
-						style={paperStyle}
-						id="2"
-						onClick={displayNum}>
+					<button style={paperStyle} id="2">
 						{curID === 2 ? tempValue : values.value2}
 					</button>
 				</Grid>
 				<Grid item>
-					<button
-						disabled={btnDisable.disabled3}
-						style={paperStyle}
-						id="3"
-						onClick={displayNum}>
+					<button style={paperStyle} id="3">
 						{curID === 3 ? tempValue : values.value3}
 					</button>
 				</Grid>

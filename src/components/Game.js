@@ -8,7 +8,7 @@ import { Typography } from "@material-ui/core";
 import "./game.css";
 import Numbers from "./Numbers";
 import Operations from "./Operations";
-import Input from "./Input";
+import ResultFieldDeleteConfirm from "./ResultFieldDeleteConfirm";
 
 const Game = () => {
 	return (
@@ -16,7 +16,8 @@ const Game = () => {
 			maxWidth="sm"
 			style={{
 				height: 500,
-				backgroundColor: "#8ceabb",
+				background:
+					"linear-gradient(170deg, rgb(13, 320, 245), rgb(5, 56, 224) 80%) no-repeat center center fixed",
 				marginTop: "100px",
 				borderRadius: "10px",
 				paddingTop: "5px",
@@ -49,7 +50,7 @@ const Game = () => {
 				style={{ margin: "10px 0", height: "40%" }}>
 				{/* Left part with user input */}
 				<Grid item>
-					<Input />
+					<ResultFieldDeleteConfirm />
 				</Grid>
 
 				{/* Right part with mathematical operations */}

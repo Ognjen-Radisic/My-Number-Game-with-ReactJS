@@ -27,18 +27,19 @@ const Operations = () => {
 		} else {
 			addOperationToResult(lastChar, btnSign);
 		}
+		console.log(stringID);
 	};
 
 	const addFrontBracketToResult = (lastCharacter) => {
 		//they can go at the beggining and after another "(" front bracket
 		if (lastCharacter === "" || lastCharacter === "(") {
 			setFrontBrackets(frontBrackets + 1);
-			setResultField(`${resultField}(`);
+			setStringID(`${stringID}(`, setResultField(`${resultField}(`));
 		}
 		// they can go after matchematical operation
 		else if (operationsArray.includes(lastCharacter)) {
 			setFrontBrackets(frontBrackets + 1);
-			setResultField(`${resultField}(`);
+			setStringID(`${stringID}(`, setResultField(`${resultField}(`));
 		}
 	};
 
@@ -46,23 +47,29 @@ const Operations = () => {
 		//they can't go at the beggining but can go after another ")" back bracket
 		if (lastCharacter === ")" && backBrackets < frontBrackets) {
 			setBackBrackets(backBrackets + 1);
-			setResultField(`${resultField})`);
+			setStringID(`${stringID})`, setResultField(`${resultField})`));
 		}
 		// they can go after number
 		else if (!isNaN(parseInt(lastCharacter)) && backBrackets < frontBrackets) {
 			setBackBrackets(backBrackets + 1);
-			setResultField(`${resultField})`);
+			setStringID(`${stringID})`, setResultField(`${resultField})`));
 		}
 	};
 
 	const addOperationToResult = (lastCharacter, btnSign) => {
 		//they can't go at the beggining but can go after another ")" back bracket
 		if (lastCharacter === ")") {
-			setResultField(`${resultField}${btnSign}`);
+			setStringID(
+				`${stringID}${btnSign}`,
+				setResultField(`${resultField}${btnSign}`)
+			);
 		}
 		// they can go after number
 		else if (!isNaN(parseInt(lastCharacter))) {
-			setResultField(`${resultField}${btnSign}`);
+			setStringID(
+				`${stringID}${btnSign}`,
+				setResultField(`${resultField}${btnSign}`)
+			);
 		}
 	};
 	return (
