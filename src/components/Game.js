@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import MyButton from "./StyledButton";
-import LinearWithValueLabel from "./ProgressBar";
 import { Typography } from "@material-ui/core";
 import "./game.css";
 import Numbers from "./Numbers";
 import Operations from "./Operations";
 import ResultFieldDeleteConfirm from "./ResultFieldDeleteConfirm";
+import { GlobalContext } from "../AppContext";
 
 const Game = () => {
+	const { curID, everythingDefault } = GlobalContext();
+
+	const restartGame = () => {
+		everythingDefault();
+	};
+
 	return (
 		<Container
 			maxWidth="sm"
@@ -34,7 +39,13 @@ const Game = () => {
 			</Typography>
 
 			{/* Start the game, and stop each number in place */}
-			<MyButton color="blue">START</MyButton>
+
+			<MyButton
+				color="blue"
+				disabled={curID > 1 ? false : true}
+				onClick={restartGame}>
+				RESTART
+			</MyButton>
 
 			{/* timer that starts after the last digit loaded, 50 seconds timer */}
 			{/* <LinearWithValueLabel /> */}

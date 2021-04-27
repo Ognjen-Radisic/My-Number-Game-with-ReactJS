@@ -83,15 +83,12 @@ const Numbers = () => {
 	return (
 		<>
 			{/* Button that initialize numbers from start to finish, and then disabled until game ends */}
-			{curID < 10 ? (
-				<MyButton color="red" onClick={getNumbers}>
-					stop
-				</MyButton>
-			) : (
-				<MyButton disabled={true} color="blue" onClick={getNumbers}>
-					good luck
-				</MyButton>
-			)}
+			<MyButton
+				disabled={curID < 10 ? false : true}
+				color="red"
+				onClick={getNumbers}>
+				STOP
+			</MyButton>
 
 			{/* TOP 3 numbers that make a target 3 digit number */}
 			<Grid container spacing={1} justify="center" style={{ margin: "10px 0" }}>

@@ -28,7 +28,7 @@ const NubmberShufler = () => {
 		}, 100);
 		return () => clearInterval(interval);
 	}, []);
-	return <div>{num}</div>;
+	return <>{num}</>;
 };
 
 export default NubmberShufler;

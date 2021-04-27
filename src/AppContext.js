@@ -58,6 +58,37 @@ const AppProvider = ({ children }) => {
 		return arr[Math.floor(Math.random() * arr.length)];
 	}
 
+	const everythingDefault = () => {
+		setResultField("");
+		setStringID("");
+		setFrontBrackets(0);
+		setBackBrackets(0);
+		setTargetNum(-1);
+		setCurID(1);
+		setValues({
+			value1: null,
+			value2: null,
+			value3: null,
+			value4: null,
+			value5: null,
+			value6: null,
+			value7: null,
+			value8: null,
+			value9: null,
+		});
+		setBtnDisable({
+			disabled1: true,
+			disabled2: true,
+			disabled3: true,
+			disabled4: true,
+			disabled5: true,
+			disabled6: true,
+			disabled7: true,
+			disabled8: true,
+			disabled9: true,
+		});
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -83,6 +114,7 @@ const AppProvider = ({ children }) => {
 				getRandomInt,
 				getRandomIntMid,
 				getRandomIntLarge,
+				everythingDefault,
 			}}>
 			{children}
 		</AppContext.Provider>
