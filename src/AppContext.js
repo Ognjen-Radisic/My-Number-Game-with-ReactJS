@@ -40,6 +40,23 @@ const AppProvider = ({ children }) => {
 		disabled8: true,
 		disabled9: true,
 	});
+	//argument max not included, starts from zero
+	function getRandomIntWithZero(max) {
+		return Math.floor(Math.random() * max);
+	}
+	//argument max included, starts from one
+	const getRandomInt = (max) => {
+		//added plus 1 at the end to eliminate zero as possibility
+		return Math.floor(Math.random() * max) + 1;
+	};
+	function getRandomIntMid() {
+		const arr = [10, 15, 20];
+		return arr[Math.floor(Math.random() * arr.length)];
+	}
+	function getRandomIntLarge() {
+		const arr = [25, 50, 75, 100];
+		return arr[Math.floor(Math.random() * arr.length)];
+	}
 
 	return (
 		<AppContext.Provider
@@ -62,6 +79,10 @@ const AppProvider = ({ children }) => {
 				setBackBrackets,
 				targetNum,
 				setTargetNum,
+				getRandomIntWithZero,
+				getRandomInt,
+				getRandomIntMid,
+				getRandomIntLarge,
 			}}>
 			{children}
 		</AppContext.Provider>

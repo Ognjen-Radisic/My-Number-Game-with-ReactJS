@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import MyButton from "./StyledButton";
 import { GlobalContext } from "../AppContext";
+import NumberShufler from "./NumberShufler";
 
 const Numbers = () => {
-	const [tempValue, setTempValue] = useState("?");
 	const {
 		values,
 		setValues,
@@ -18,25 +18,19 @@ const Numbers = () => {
 		setStringID,
 		operationsArray,
 		setTargetNum,
+		getRandomIntWithZero,
+		getRandomInt,
+		getRandomIntMid,
+		getRandomIntLarge,
 	} = GlobalContext();
 
-	function getRandomInt(max) {
-		//added plus 1 at the end to eliminate zero as possibility
-		return Math.floor(Math.random() * max) + 1;
-	}
-	function getRandomIntMid() {
-		const arr = [10, 15, 20];
-		return arr[Math.floor(Math.random() * arr.length)];
-	}
-	function getRandomIntLarge() {
-		const arr = [25, 50, 75, 100];
-		return arr[Math.floor(Math.random() * arr.length)];
-	}
-
+	// press button stop to generate new numbers at the start of the game
 	// lock in numbers by taversing ids and match them to the element
 	// when they are matched assing random number from the given range
 	const getNumbers = () => {
-		if (curID < 8) {
+		if (curID < 4) {
+			setValues({ ...values, [`value${curID}`]: getRandomIntWithZero(10) });
+		} else if (curID < 8) {
 			setValues({ ...values, [`value${curID}`]: getRandomInt(9) });
 		} else if (curID === 8) {
 			setValues({ ...values, [`value${curID}`]: getRandomIntMid() });
@@ -62,7 +56,7 @@ const Numbers = () => {
 		}
 	};
 
-	// press button stop to generate new numbers at the start of the game
+	//when button with number is clicked proceed with adding it into result field
 	const displayNum = (e) => {
 		const id = e.target.id;
 		addNumberToResultField(id);
@@ -103,17 +97,17 @@ const Numbers = () => {
 			<Grid container spacing={1} justify="center" style={{ margin: "10px 0" }}>
 				<Grid item>
 					<button style={paperStyle} id="1">
-						{curID === 1 ? tempValue : values.value1}
+						{curID === 1 ? <NumberShufler /> : values.value1}
 					</button>
 				</Grid>
 				<Grid item>
 					<button style={paperStyle} id="2">
-						{curID === 2 ? tempValue : values.value2}
+						{curID === 2 ? <NumberShufler /> : values.value2}
 					</button>
 				</Grid>
 				<Grid item>
 					<button style={paperStyle} id="3">
-						{curID === 3 ? tempValue : values.value3}
+						{curID === 3 ? <NumberShufler /> : values.value3}
 					</button>
 				</Grid>
 			</Grid>
@@ -132,7 +126,7 @@ const Numbers = () => {
 							style={paperStyle}
 							id="4"
 							onClick={displayNum}>
-							{curID === 4 ? tempValue : values.value4}
+							{curID === 4 ? <NumberShufler /> : values.value4}
 						</button>
 					</Grid>
 					<Grid item>
@@ -141,7 +135,7 @@ const Numbers = () => {
 							style={paperStyle}
 							id="5"
 							onClick={displayNum}>
-							{curID === 5 ? tempValue : values.value5}
+							{curID === 5 ? <NumberShufler /> : values.value5}
 						</button>
 					</Grid>
 					<Grid item>
@@ -150,7 +144,7 @@ const Numbers = () => {
 							style={paperStyle}
 							id="6"
 							onClick={displayNum}>
-							{curID === 6 ? tempValue : values.value6}
+							{curID === 6 ? <NumberShufler /> : values.value6}
 						</button>
 					</Grid>
 					<Grid item>
@@ -159,7 +153,7 @@ const Numbers = () => {
 							style={paperStyle}
 							id="7"
 							onClick={displayNum}>
-							{curID === 7 ? tempValue : values.value7}
+							{curID === 7 ? <NumberShufler /> : values.value7}
 						</button>
 					</Grid>
 				</Grid>
@@ -176,7 +170,7 @@ const Numbers = () => {
 							style={{ ...paperStyle, width: 60 }}
 							id="8"
 							onClick={displayNum}>
-							{curID === 8 ? tempValue : values.value8}
+							{curID === 8 ? <NumberShufler /> : values.value8}
 						</button>
 					</Grid>
 				</Grid>
@@ -193,7 +187,7 @@ const Numbers = () => {
 							style={{ ...paperStyle, width: 80 }}
 							id="9"
 							onClick={displayNum}>
-							{curID === 9 ? tempValue : values.value9}
+							{curID === 9 ? <NumberShufler /> : values.value9}
 						</button>
 					</Grid>
 				</Grid>
