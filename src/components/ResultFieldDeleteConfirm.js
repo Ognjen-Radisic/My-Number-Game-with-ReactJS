@@ -65,10 +65,23 @@ const Input = () => {
 
 	////////////////////////////CONFIRM RESULT FUNCTIONALITY////////////////////////////////////////////////
 	const checkResult = () => {
-		if (targetNum === eval(resultField)) {
+		//if string is empty
+		if (resultField === "") {
+			alert("You should type something");
+		}
+		//if it doesnt finish with the number
+		else if (isNaN(parseInt(resultField.charAt(resultField.length - 1)))) {
+			alert("Watch out! Your result field is incomplete.");
+		}
+		//if it is correct
+		else if (targetNum === eval(resultField)) {
 			alert("CORRECT");
-		} else {
-			alert("Better luck next time!");
+		}
+		//if it is incorrect
+		else {
+			alert(
+				"Better luck next time! You need to improve your skills in calculation."
+			);
 		}
 	};
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
