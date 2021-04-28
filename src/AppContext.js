@@ -58,6 +58,9 @@ const AppProvider = ({ children }) => {
 		return arr[Math.floor(Math.random() * arr.length)];
 	}
 
+	//progress bar data
+	const [progress, setProgress] = useState(1);
+
 	const everythingDefault = () => {
 		setResultField("");
 		setStringID("");
@@ -87,6 +90,7 @@ const AppProvider = ({ children }) => {
 			disabled8: true,
 			disabled9: true,
 		});
+		setProgress(1);
 	};
 
 	return (
@@ -115,6 +119,8 @@ const AppProvider = ({ children }) => {
 				getRandomIntMid,
 				getRandomIntLarge,
 				everythingDefault,
+				progress,
+				setProgress,
 			}}>
 			{children}
 		</AppContext.Provider>

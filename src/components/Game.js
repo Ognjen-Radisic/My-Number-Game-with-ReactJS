@@ -8,6 +8,9 @@ import Numbers from "./Numbers";
 import Operations from "./Operations";
 import ResultFieldDeleteConfirm from "./ResultFieldDeleteConfirm";
 import { GlobalContext } from "../AppContext";
+import LinearWithValueLabel, {
+	LinearProgressWithLabel,
+} from "./ProgressBar.js";
 
 const Game = () => {
 	const { curID, everythingDefault } = GlobalContext();
@@ -20,7 +23,7 @@ const Game = () => {
 		<Container
 			maxWidth="sm"
 			style={{
-				height: 500,
+				height: "550px",
 				background:
 					"linear-gradient(170deg, rgb(13, 320, 245), rgb(5, 56, 224) 80%) no-repeat center center fixed",
 				marginTop: "100px",
@@ -49,6 +52,11 @@ const Game = () => {
 
 			{/* timer that starts after the last digit loaded, 50 seconds timer */}
 			{/* <LinearWithValueLabel /> */}
+			{curID < 9 ? (
+				<LinearProgressWithLabel value={0} />
+			) : (
+				<LinearWithValueLabel />
+			)}
 
 			{/* 3 individual digits at the top that make target number, below, 4 single digits, one 'medium' number, one 'large' number */}
 			<Numbers />

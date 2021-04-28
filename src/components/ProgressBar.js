@@ -4,17 +4,18 @@ import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import { GlobalContext } from "../AppContext";
 
 function LinearProgressWithLabel(props) {
 	return (
-		<Box display="flex" alignItems="center">
-			<Box width="100%" mr={1}>
-				<LinearProgress variant="determinate" {...props} />
+		<Box display="flex" alignItems="center" justifyContent="center">
+			<Box width="50%" mr={1}>
+				<LinearProgress variant="determinate" color="primary" {...props} />
 			</Box>
 			<Box minWidth={35}>
-				<Typography variant="body2" color="textSecondary">{`${Math.round(
-					props.value
-				)}%`}</Typography>
+				<Typography variant="body2" color="textSecondary">
+					{`${Math.round(props.value)}%`}
+				</Typography>
 			</Box>
 		</Box>
 	);
@@ -36,14 +37,14 @@ const useStyles = makeStyles({
 
 export default function LinearWithValueLabel() {
 	const classes = useStyles();
-	const [progress, setProgress] = React.useState(1);
+	const { progress, setProgress } = GlobalContext();
 
 	React.useEffect(() => {
 		const timer = setInterval(() => {
 			setProgress((prevProgress) =>
 				prevProgress >= 100 ? 1 : prevProgress + 1
 			);
-		}, 500);
+		}, 600);
 		return () => {
 			clearInterval(timer);
 		};
@@ -55,3 +56,5 @@ export default function LinearWithValueLabel() {
 		</div>
 	);
 }
+
+export { LinearProgressWithLabel };
