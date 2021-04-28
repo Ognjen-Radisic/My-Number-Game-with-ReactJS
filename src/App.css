@@ -13,10 +13,13 @@ body {
 }
 
 .App {
+	position: absolute;
 	margin: 0;
 	text-align: center;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
+	background: linear-gradient(170deg, rgb(130, 216, 245), rgb(56, 56, 224) 80%)
+		no-repeat center center fixed;
 }

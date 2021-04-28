@@ -2,7 +2,7 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import MyButton from "./StyledButton";
-import { Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import "./game.css";
 import Numbers from "./Numbers";
 import Operations from "./Operations";
@@ -11,8 +11,11 @@ import { GlobalContext } from "../AppContext";
 import LinearWithValueLabel, {
 	LinearProgressWithLabel,
 } from "./ProgressBar.js";
+import FullscreenIcon from "@material-ui/icons/Fullscreen";
+import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 
-const Game = () => {
+const Game = ({ handleFullscreen }) => {
 	const { curID, everythingDefault } = GlobalContext();
 
 	const restartGame = () => {
@@ -30,6 +33,7 @@ const Game = () => {
 				borderRadius: "10px",
 				paddingTop: "5px",
 				boxShadow: "6px 5px #292929",
+				position: "relative",
 			}}>
 			{/* TITLE MyNumber */}
 			<Typography
@@ -41,8 +45,27 @@ const Game = () => {
 				Moj Broj
 			</Typography>
 
-			{/* Start the game, and stop each number in place */}
+			{/* Fullscreen functionality */}
+			<div style={{ position: "absolute", top: 20, right: 3 }}>
+				{handleFullscreen.active ? (
+					<Button size="small" onClick={handleFullscreen.exit}>
+						<FullscreenExitIcon onClick={handleFullscreen.exit} />
+					</Button>
+				) : (
+					<Button size="small" onClick={handleFullscreen.enter}>
+						<FullscreenIcon />
+					</Button>
+				)}
+			</div>
 
+			{/* How to play button */}
+			<div style={{ position: "absolute", top: 20, left: 3 }}>
+				<Button size="small">
+					<HelpOutlineIcon />
+				</Button>
+			</div>
+
+			{/* Restart game and put all values in default state */}
 			<MyButton
 				color="blue"
 				disabled={curID > 1 ? false : true}
@@ -50,12 +73,11 @@ const Game = () => {
 				RESTART
 			</MyButton>
 
-			{/* timer that starts after the last digit loaded, 50 seconds timer */}
-			{/* <LinearWithValueLabel /> */}
-			{curID < 9 ? (
-				<LinearProgressWithLabel value={0} />
-			) : (
+			{/* timer that starts after last digit is loaded, 60 seconds timer */}
+			{curID >= 10 ? (
 				<LinearWithValueLabel />
+			) : (
+				<LinearProgressWithLabel value={0} />
 			)}
 
 			{/* 3 individual digits at the top that make target number, below, 4 single digits, one 'medium' number, one 'large' number */}
