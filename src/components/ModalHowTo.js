@@ -10,6 +10,13 @@ import { useSpring, animated, config } from "react-spring";
 
 const ModalHowTo = () => {
 	const { showModalHowTo, setShowModalHowTo } = GlobalContext();
+	const modalRef = useRef();
+
+	const closeModalOnBackground = (e) => {
+		if (modalRef.current === e.target) {
+			setShowModalHowTo(false);
+		}
+	};
 
 	const closeModal = () => {
 		setShowModalHowTo(!showModalHowTo);
@@ -24,10 +31,29 @@ const ModalHowTo = () => {
 		transform: showModalHowTo ? `translateY(0%)` : `translateY(-100%)`,
 	});
 
+	//exit by pressing escape key
+	const keyPress = useCallback(
+		(e) => {
+			if (e.key === "Escape" && showModalHowTo) {
+				setShowModalHowTo(false);
+				console.log("You pressed escape");
+			}
+		},
+		[setShowModalHowTo, showModalHowTo]
+	);
+
+	useEffect(() => {
+		document.addEventListener("keydown", keyPress);
+		return () => document.removeEventListener("keydown", keyPress);
+	}, [keyPress]);
+
 	return (
 		<>
 			{showModalHowTo ? (
-				<div className="background">
+				<div
+					className="background"
+					ref={modalRef}
+					onClick={closeModalOnBackground}>
 					<animated.div style={animation} className="modal-wrapper">
 						<Grid
 							container
