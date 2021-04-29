@@ -13,6 +13,8 @@ const Input = () => {
 		btnDisable,
 		setBtnDisable,
 		targetNum,
+		frontBrackets,
+		backBrackets,
 	} = GlobalContext();
 
 	///////////////////////////////////////DELETING FUNCTIONALITY//////////////////////////////////////////
@@ -71,14 +73,22 @@ const Input = () => {
 		if (resultField === "") {
 			alert("You should type something");
 		}
+
+		//user didnt type the same number of front and back brackets
+		else if (frontBrackets !== backBrackets) {
+			alert("Number of your brackets is not good");
+		}
+
 		//if it doesnt finish with the number
 		else if (lastChar !== ")" && isNaN(parseInt(lastChar))) {
 			alert("Watch out! Your result field is incomplete.");
 		}
+
 		//if it is correct
 		else if (targetNum === eval(resultField)) {
 			alert("CORRECT");
 		}
+
 		//if it is incorrect
 		else {
 			alert(
@@ -96,7 +106,8 @@ const Input = () => {
 					<Button
 						color="secondary"
 						variant="contained"
-						onClick={deleteCharacter}>
+						onClick={deleteCharacter}
+						disabled={resultField === "" ? true : false}>
 						DELETE
 					</Button>
 					<Button color="primary" variant="contained" onClick={checkResult}>
