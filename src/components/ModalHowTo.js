@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import "./modalHowTo.css";
-import { Button, Container, Grid } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { GlobalContext } from "../AppContext";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+
+// react spring
+import { useSpring, animated, config } from "react-spring";
 
 const ModalHowTo = () => {
 	const { showModalHowTo, setShowModalHowTo } = GlobalContext();
@@ -12,20 +15,26 @@ const ModalHowTo = () => {
 		setShowModalHowTo(!showModalHowTo);
 	};
 
+	//react spring
+	const animation = useSpring({
+		config: {
+			...config.wobbly,
+		},
+		opacity: showModalHowTo ? 1 : 0,
+		transform: showModalHowTo ? `translateY(0%)` : `translateY(-100%)`,
+	});
+
 	return (
 		<>
 			{showModalHowTo ? (
-				<div className="background" onClick={closeModal}>
-					<Container
-						maxWidth="xs"
-						className="modal-wrapper"
-						style={{ padding: 0 }}>
+				<div className="background">
+					<animated.div style={animation} className="modal-wrapper">
 						<Grid
 							container
 							direction="column"
 							justify="space-between"
 							className="grid-container">
-							<Grid item className="top-bar" alignItems="center">
+							<Grid item className="top-bar">
 								<div
 									style={{
 										display: "flex",
@@ -43,7 +52,7 @@ const ModalHowTo = () => {
 								/>
 							</Grid>
 							<Grid item className="content">
-								<h2>Content</h2>
+								<h2>Tips</h2>
 							</Grid>
 							<Grid item className="bottom-buttons">
 								<Button>Previous Tip</Button>
@@ -51,7 +60,7 @@ const ModalHowTo = () => {
 								<Button onClick={closeModal}>Close</Button>
 							</Grid>
 						</Grid>
-					</Container>
+					</animated.div>
 				</div>
 			) : null}
 		</>

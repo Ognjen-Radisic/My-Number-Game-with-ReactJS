@@ -12,6 +12,7 @@
 }
 
 .modal-wrapper {
+	width: 360px;
 	background: white;
 	position: absolute;
 	z-index: 10;
