@@ -59,7 +59,7 @@ const AppProvider = ({ children }) => {
 	}
 
 	//progress bar data
-	const [progress, setProgress] = useState(1);
+	const [progress, setProgress] = useState(0);
 
 	const everythingDefault = () => {
 		setResultField("");
@@ -90,7 +90,7 @@ const AppProvider = ({ children }) => {
 			disabled8: true,
 			disabled9: true,
 		});
-		setProgress(1);
+		setProgress(0);
 	};
 
 	const [showModalHowTo, setShowModalHowTo] = useState(false);

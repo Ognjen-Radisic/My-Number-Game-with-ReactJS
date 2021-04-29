@@ -15,6 +15,7 @@ import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import ModalHowTo from "./ModalHowTo";
+import ModalTimeIsUp from "./ModalTimeIsUp";
 
 const Game = ({ handleFullscreen }) => {
 	const {
@@ -22,6 +23,7 @@ const Game = ({ handleFullscreen }) => {
 		everythingDefault,
 		showModalHowTo,
 		setShowModalHowTo,
+		progress,
 	} = GlobalContext();
 
 	const restartGame = () => {
@@ -86,11 +88,15 @@ const Game = ({ handleFullscreen }) => {
 			</MyButton>
 
 			{/* timer that starts after last digit is loaded, 60 seconds timer */}
-			{curID >= 10 ? (
+			{curID >= 10 && progress < 100 ? (
+				//this one is dynamic
 				<LinearWithValueLabel />
 			) : (
-				<LinearProgressWithLabel value={0} />
+				// this one is static
+				<LinearProgressWithLabel value={progress} />
 			)}
+			{/* Modal when the time is up */}
+			<ModalTimeIsUp />
 
 			{/* 3 individual digits at the top that make target number, below, 4 single digits, one 'medium' number, one 'large' number */}
 			<Numbers />
