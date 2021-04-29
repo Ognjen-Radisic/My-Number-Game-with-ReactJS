@@ -14,12 +14,22 @@ import LinearWithValueLabel, {
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import ModalHowTo from "./ModalHowTo";
 
 const Game = ({ handleFullscreen }) => {
-	const { curID, everythingDefault } = GlobalContext();
+	const {
+		curID,
+		everythingDefault,
+		showModalHowTo,
+		setShowModalHowTo,
+	} = GlobalContext();
 
 	const restartGame = () => {
 		everythingDefault();
+	};
+
+	const showModal = () => {
+		setShowModalHowTo(!showModalHowTo);
 	};
 
 	return (
@@ -60,10 +70,12 @@ const Game = ({ handleFullscreen }) => {
 
 			{/* How to play button */}
 			<div style={{ position: "absolute", top: 20, left: 3 }}>
-				<Button size="small">
+				<Button size="small" onClick={showModal}>
 					<HelpOutlineIcon />
 				</Button>
 			</div>
+			{/* Modal HOW TO Play */}
+			<ModalHowTo />
 
 			{/* Restart game and put all values in default state */}
 			<MyButton

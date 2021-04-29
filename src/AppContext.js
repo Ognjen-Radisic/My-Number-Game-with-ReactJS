@@ -93,6 +93,8 @@ const AppProvider = ({ children }) => {
 		setProgress(1);
 	};
 
+	const [showModalHowTo, setShowModalHowTo] = useState(false);
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -121,6 +123,8 @@ const AppProvider = ({ children }) => {
 				everythingDefault,
 				progress,
 				setProgress,
+				showModalHowTo,
+				setShowModalHowTo,
 			}}>
 			{children}
 		</AppContext.Provider>
