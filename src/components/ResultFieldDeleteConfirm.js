@@ -65,12 +65,14 @@ const Input = () => {
 
 	////////////////////////////CONFIRM RESULT FUNCTIONALITY////////////////////////////////////////////////
 	const checkResult = () => {
+		const lastChar = resultField.charAt(resultField.length - 1);
+
 		//if string is empty
 		if (resultField === "") {
 			alert("You should type something");
 		}
 		//if it doesnt finish with the number
-		else if (isNaN(parseInt(resultField.charAt(resultField.length - 1)))) {
+		else if (lastChar !== ")" && isNaN(parseInt(lastChar))) {
 			alert("Watch out! Your result field is incomplete.");
 		}
 		//if it is correct

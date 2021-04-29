@@ -14,6 +14,7 @@ const Operations = () => {
 		setFrontBrackets,
 		backBrackets,
 		setBackBrackets,
+		curID,
 	} = GlobalContext();
 
 	const changeResultField = (e) => {
@@ -32,14 +33,16 @@ const Operations = () => {
 
 	const addFrontBracketToResult = (lastCharacter) => {
 		//they can go at the beggining and after another "(" front bracket
-		if (lastCharacter === "" || lastCharacter === "(") {
-			setFrontBrackets(frontBrackets + 1);
-			setStringID(`${stringID}(`, setResultField(`${resultField}(`));
-		}
-		// they can go after matchematical operation
-		else if (operationsArray.includes(lastCharacter)) {
-			setFrontBrackets(frontBrackets + 1);
-			setStringID(`${stringID}(`, setResultField(`${resultField}(`));
+		if (curID > 9) {
+			if (lastCharacter === "" || lastCharacter === "(") {
+				setFrontBrackets(frontBrackets + 1);
+				setStringID(`${stringID}(`, setResultField(`${resultField}(`));
+			}
+			// they can go after matchematical operation
+			else if (operationsArray.includes(lastCharacter)) {
+				setFrontBrackets(frontBrackets + 1);
+				setStringID(`${stringID}(`, setResultField(`${resultField}(`));
+			}
 		}
 	};
 
