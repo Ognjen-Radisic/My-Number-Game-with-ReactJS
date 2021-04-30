@@ -54,7 +54,7 @@ const Game = ({ handleFullscreen }) => {
 					margin: "10px 0",
 					fontFamily: "Kanit , sans-serif",
 				}}>
-				Moj Broj
+				My Number
 			</Typography>
 
 			{/* Fullscreen functionality */}

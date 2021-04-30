@@ -14,7 +14,9 @@ const Input = () => {
 		setBtnDisable,
 		targetNum,
 		frontBrackets,
+		setFrontBrackets,
 		backBrackets,
+		setBackBrackets,
 	} = GlobalContext();
 
 	///////////////////////////////////////DELETING FUNCTIONALITY//////////////////////////////////////////
@@ -25,6 +27,11 @@ const Input = () => {
 		}
 		//ako nije broj samo obrisi poslednji karakter
 		else if (isNaN(parseInt(lastChar))) {
+			if (lastChar === "(") {
+				setFrontBrackets(frontBrackets - 1);
+			} else if (lastChar === ")") {
+				setBackBrackets(backBrackets - 1);
+			}
 			const newResultID = stringID.slice(0, -1);
 			const newResult = resultField.slice(0, -1);
 			setStringID(newResultID, setResultField(newResult));
