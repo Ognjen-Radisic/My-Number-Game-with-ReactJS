@@ -91,9 +91,24 @@ const AppProvider = ({ children }) => {
 			disabled9: true,
 		});
 		setProgress(0);
+		setShowModalHowTo(false);
+		setResultModalVisible(false);
+		setIsResultCorrect(null);
 	};
 
+	//for the information how to play the game
 	const [showModalHowTo, setShowModalHowTo] = useState(false);
+
+	////////////////result modal and neccesary states and functions////////
+	const [resultModalVisible, setResultModalVisible] = useState(false);
+
+	const [isResultCorrect, setIsResultCorrect] = useState(null);
+
+	const makeModalPop = (type) => {
+		setIsResultCorrect(type);
+		setResultModalVisible(true);
+	};
+	////////////////////////////////////////////////////////////////////////
 
 	return (
 		<AppContext.Provider
@@ -125,6 +140,9 @@ const AppProvider = ({ children }) => {
 				setProgress,
 				showModalHowTo,
 				setShowModalHowTo,
+				resultModalVisible,
+				isResultCorrect,
+				makeModalPop,
 			}}>
 			{children}
 		</AppContext.Provider>

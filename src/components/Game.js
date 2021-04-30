@@ -16,6 +16,7 @@ import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import ModalHowTo from "./ModalHowTo";
 import ModalTimeIsUp from "./ModalTimeIsUp";
+import ModalConfirmResult from "./ModalConfirmResult";
 
 const Game = ({ handleFullscreen }) => {
 	const {
@@ -24,6 +25,7 @@ const Game = ({ handleFullscreen }) => {
 		showModalHowTo,
 		setShowModalHowTo,
 		progress,
+		resultModalVisible,
 	} = GlobalContext();
 
 	const restartGame = () => {
@@ -88,7 +90,8 @@ const Game = ({ handleFullscreen }) => {
 			</MyButton>
 
 			{/* timer that starts after last digit is loaded, 60 seconds timer */}
-			{curID >= 10 && progress < 100 ? (
+			{/* we added result modal visible to stop the timer when confirm button is clicked*/}
+			{curID >= 10 && progress < 100 && !resultModalVisible ? (
 				//this one is dynamic
 				<LinearWithValueLabel />
 			) : (
@@ -97,6 +100,9 @@ const Game = ({ handleFullscreen }) => {
 			)}
 			{/* Modal when the time is up */}
 			<ModalTimeIsUp />
+
+			{/* Modal when confirm button is clicked if the result field is not in error then we show snackbar */}
+			<ModalConfirmResult />
 
 			{/* 3 individual digits at the top that make target number, below, 4 single digits, one 'medium' number, one 'large' number */}
 			<Numbers />

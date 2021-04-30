@@ -11,7 +11,7 @@ const LinkToRepo = () => {
 				justifyContent: "space-between",
 				alignItems: "center",
 			}}>
-			<h2 style={{ color: "#050A30" }}>
+			<h2 style={{ color: "#050A30", fontWeight: "50" }}>
 				by{" "}
 				<a
 					style={{ color: "inherit", textDecoration: "none" }}

@@ -17,6 +17,7 @@ const Input = () => {
 		setFrontBrackets,
 		backBrackets,
 		setBackBrackets,
+		makeModalPop,
 	} = GlobalContext();
 
 	///////////////////////////////////////DELETING FUNCTIONALITY//////////////////////////////////////////
@@ -76,31 +77,29 @@ const Input = () => {
 	const checkResult = () => {
 		const lastChar = resultField.charAt(resultField.length - 1);
 
-		//if string is empty
+		//if string is empty //snackbar
 		if (resultField === "") {
 			alert("You should type something");
 		}
 
-		//user didnt type the same number of front and back brackets
+		//user didnt type the same number of front and back brackets //snackbar
 		else if (frontBrackets !== backBrackets) {
 			alert("Number of your brackets is not good");
 		}
 
-		//if it doesnt finish with the number
+		//if it doesnt finish with the number //snackbar
 		else if (lastChar !== ")" && isNaN(parseInt(lastChar))) {
 			alert("Watch out! Your result field is incomplete.");
 		}
 
-		//if it is correct
+		//if it is correct //modal
 		else if (targetNum === eval(resultField)) {
-			alert("CORRECT");
+			makeModalPop(true);
 		}
 
-		//if it is incorrect
+		//if it is incorrect we pass false to make values in modal different//modal
 		else {
-			alert(
-				"Better luck next time! You need to improve your skills in calculation."
-			);
+			makeModalPop(false);
 		}
 	};
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
