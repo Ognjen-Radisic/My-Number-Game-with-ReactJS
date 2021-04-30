@@ -3,6 +3,7 @@ import Game from "./components/Game";
 import "fontsource-roboto";
 import { AppProvider } from "./AppContext";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import LinkToRepo from "./components/LinkToRepo";
 
 function App() {
 	const handleFullscreen = useFullScreenHandle();
@@ -12,6 +13,7 @@ function App() {
 			<FullScreen handle={handleFullscreen}>
 				<div className="App">
 					<Game handleFullscreen={handleFullscreen} />
+					<LinkToRepo />
 				</div>
 			</FullScreen>
 		</AppProvider>
