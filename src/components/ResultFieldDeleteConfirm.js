@@ -18,6 +18,7 @@ const Input = () => {
 		backBrackets,
 		setBackBrackets,
 		makeModalPop,
+		makeSnackbarPop,
 	} = GlobalContext();
 
 	///////////////////////////////////////DELETING FUNCTIONALITY//////////////////////////////////////////
@@ -79,17 +80,17 @@ const Input = () => {
 
 		//if string is empty //snackbar
 		if (resultField === "") {
-			alert("You should type something");
+			makeSnackbarPop("Watch out! Your result field is empty.");
 		}
 
 		//user didnt type the same number of front and back brackets //snackbar
 		else if (frontBrackets !== backBrackets) {
-			alert("Number of your brackets is not good");
+			makeSnackbarPop("Watch out! Number of your brackets is not matching.");
 		}
 
 		//if it doesnt finish with the number //snackbar
 		else if (lastChar !== ")" && isNaN(parseInt(lastChar))) {
-			alert("Watch out! Your result field is incomplete.");
+			makeSnackbarPop("Watch out! Your result field is incomplete.");
 		}
 
 		//if it is correct //modal

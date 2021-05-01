@@ -17,6 +17,7 @@ import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import ModalHowTo from "./ModalHowTo";
 import ModalTimeIsUp from "./ModalTimeIsUp";
 import ModalConfirmResult from "./ModalConfirmResult";
+import SnackBarError from "./SnackBarError";
 
 const Game = ({ handleFullscreen }) => {
 	const {
@@ -103,6 +104,9 @@ const Game = ({ handleFullscreen }) => {
 
 			{/* Modal when confirm button is clicked if the result field is not in error then we show snackbar */}
 			<ModalConfirmResult />
+
+			{/* Pop a snackbar when result field is confirmed and contains error, FindDOMNode warning will be resolved in material ui version 5, according to the documentation*/}
+			<SnackBarError />
 
 			{/* 3 individual digits at the top that make target number, below, 4 single digits, one 'medium' number, one 'large' number */}
 			<Numbers />

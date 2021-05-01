@@ -94,6 +94,8 @@ const AppProvider = ({ children }) => {
 		setShowModalHowTo(false);
 		setResultModalVisible(false);
 		setIsResultCorrect(null);
+		setOpenSnackbar(false);
+		setMessageSnackbar("");
 	};
 
 	//for the information how to play the game
@@ -107,6 +109,16 @@ const AppProvider = ({ children }) => {
 	const makeModalPop = (type) => {
 		setIsResultCorrect(type);
 		setResultModalVisible(true);
+	};
+	////////////////////////////////////////////////////////////////////////
+
+	//////////////////////////SNACKBAR ERROR HANDLING//////////////////////
+	const [openSnackbar, setOpenSnackbar] = useState(false);
+	const [messageSnackbar, setMessageSnackbar] = useState("");
+
+	const makeSnackbarPop = (message) => {
+		setMessageSnackbar(message);
+		setOpenSnackbar(true);
 	};
 	////////////////////////////////////////////////////////////////////////
 
@@ -143,6 +155,10 @@ const AppProvider = ({ children }) => {
 				resultModalVisible,
 				isResultCorrect,
 				makeModalPop,
+				openSnackbar,
+				setOpenSnackbar,
+				messageSnackbar,
+				makeSnackbarPop,
 			}}>
 			{children}
 		</AppContext.Provider>
