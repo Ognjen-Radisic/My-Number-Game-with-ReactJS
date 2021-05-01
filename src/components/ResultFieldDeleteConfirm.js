@@ -109,16 +109,17 @@ const Input = () => {
 		<>
 			<div className="result-section">
 				<div className="result-field">{resultField}</div>
-				<div className="button-section">
+				<div className="button-section" style={{ display: "flex" }}>
+					<Button color="primary" variant="contained" onClick={checkResult}>
+						CONFIRM
+					</Button>
 					<Button
 						color="secondary"
 						variant="contained"
+						style={{ marginLeft: "5px" }}
 						onClick={deleteCharacter}
 						disabled={resultField === "" ? true : false}>
 						DELETE
-					</Button>
-					<Button color="primary" variant="contained" onClick={checkResult}>
-						CONFIRM
 					</Button>
 				</div>
 			</div>

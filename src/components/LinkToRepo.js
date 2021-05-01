@@ -28,7 +28,12 @@ const LinkToRepo = () => {
 					backgroundColor: "#7EC8E3",
 					fontWeight: "1000",
 				}}
-				onClick={() => window.open("https://www.google.com/", "_blank")}>
+				onClick={() =>
+					window.open(
+						"https://github.com/Ognjen-Radisic/My-Number-Game-with-ReactJS",
+						"_blank"
+					)
+				}>
 				<FavoriteIcon
 					style={{ fontSize: "15px", marginRight: "5px", marginBottom: "2px" }}
 				/>
