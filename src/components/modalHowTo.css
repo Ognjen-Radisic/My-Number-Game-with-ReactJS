@@ -28,7 +28,7 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 10px;
-	background-color: darkslategray;
+	background-color: #08313a;
 	color: floralwhite;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
@@ -37,5 +37,5 @@
 .bottom-buttons {
 	display: flex;
 	justify-content: flex-end;
-	padding: 5px 15px;
+	padding: 5px 20px;
 }

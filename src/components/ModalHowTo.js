@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback, useState } from "react";
 import "./modalHowTo.css";
 import { Button, Grid } from "@material-ui/core";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
@@ -8,10 +8,32 @@ import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 // react spring
 import { useSpring, animated, config } from "react-spring";
 
+import TipSection from "./TipSection";
+
 const ModalHowTo = () => {
 	const { showModalHowTo, setShowModalHowTo } = GlobalContext();
 	const modalRef = useRef();
 
+	///////////tip traversing logic//////////
+	const [currentTip, setCurrentTip] = useState(1);
+
+	const nextTip = () => {
+		if (currentTip === 7) {
+			return;
+		} else {
+			setCurrentTip(currentTip + 1);
+		}
+	};
+	const prevTip = () => {
+		if (currentTip === 0) {
+			return;
+		} else {
+			setCurrentTip(currentTip - 1);
+		}
+	};
+	/////////////////////////////////////////////
+
+	//when click on background close modal
 	const closeModalOnBackground = (e) => {
 		if (modalRef.current === e.target) {
 			setShowModalHowTo(false);
@@ -59,7 +81,8 @@ const ModalHowTo = () => {
 							container
 							direction="column"
 							justify="space-between"
-							className="grid-container">
+							className="grid-container"
+							style={{ backgroundColor: "#DBE8D8", borderRadius: "15px" }}>
 							<Grid item className="top-bar">
 								<div
 									style={{
@@ -78,12 +101,22 @@ const ModalHowTo = () => {
 								/>
 							</Grid>
 							<Grid item className="content">
-								<h2>Tips</h2>
+								<TipSection currentTip={currentTip} />
 							</Grid>
 							<Grid item className="bottom-buttons">
-								<Button>Previous Tip</Button>
-								<Button>Next Tip</Button>
-								<Button onClick={closeModal}>Close</Button>
+								<Button
+									variant="contained"
+									onClick={prevTip}
+									disabled={currentTip === 0 ? true : false}>
+									Previous Tip
+								</Button>
+								<Button
+									variant="contained"
+									onClick={nextTip}
+									disabled={currentTip === 7 ? true : false}
+									style={{ backgroundColor: "#08313a", color: "white" }}>
+									Next Tip
+								</Button>
 							</Grid>
 						</Grid>
 					</animated.div>
