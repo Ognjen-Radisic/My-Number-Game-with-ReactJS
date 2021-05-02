@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Grid } from "@material-ui/core";
 import { animated, config, useSpring } from "@react-spring/web";
 import { GlobalContext } from "../AppContext";

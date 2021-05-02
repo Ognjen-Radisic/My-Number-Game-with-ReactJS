@@ -1,6 +1,5 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import { GlobalContext } from "../AppContext";
 
 const Operations = () => {
@@ -28,7 +27,7 @@ const Operations = () => {
 		} else {
 			addOperationToResult(lastChar, btnSign);
 		}
-		console.log(stringID);
+		// console.log(stringID);
 	};
 
 	const addFrontBracketToResult = (lastCharacter) => {

@@ -76,8 +76,8 @@ const Numbers = () => {
 				setResultField(`${resultField}${values[`value${id}`]}`)
 			);
 		}
-		console.log(resultField);
-		console.log(stringID);
+		// console.log(resultField);
+		// console.log(stringID);
 	};
 
 	return (
