@@ -1,6 +1,6 @@
 # My Number Game with React
 
-Check it out LIVE: https://studio-ackerman.com/
+Check it out LIVE: **https://studio-ackerman.com/**
 
 ## Goals
 
